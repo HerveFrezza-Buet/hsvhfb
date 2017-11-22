@@ -1,0 +1,27 @@
+<launch>
+
+  
+  <node pkg="hsvhfb" type="hsv_node.py" name="hue_selector" output="screen">
+    <param name="image_transport" value="compressed"/>
+    <remap from="image_in/compressed" to="/video/image_raw/compressed"/>
+  </node>
+  
+  <node name="video"    pkg="usb_cam"    type="usb_cam_node" respawn="true">
+    <param name="video_device" value="/dev/video0" />
+    <param name="pixel_format" value="yuyv" />
+  </node>
+
+  <node name="reconf" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+  
+  
+  <node name="view_cam" pkg="image_view" type="image_view">
+    <remap from="image" to="/video/image_raw"/>
+  </node>
+  
+  <node name="view_hsv" pkg="image_view" type="image_view">
+    <param name="image_transport" value="compressed"/>
+    <remap from="image/compressed" to="/image_out/compressed"/>
+  </node>
+  
+  
+</launch>
