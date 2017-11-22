@@ -1,2 +1,3 @@
 # hsvhfb
-Tutorial for HSV selection in rospy
+
+Tutorial for HSV selection in rospy, written with Jérémy Fix.
